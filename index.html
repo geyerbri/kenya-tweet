@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Twitter Use in Kenya</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="New.themes.min.css" />
+	<link rel="stylesheet" href="jquery.mobile.structure-1.4.5.min.css" />
+    <!--<link rel="stylesheet" href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' />-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' />
+    <link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' />
+    <script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.0.1/leaflet-omnivore.min.js'></script>
+	<script type="text/javascript">window.googleDocCallback = function () { return true; };</script>
+		<style>
+		body { margin:0; padding:0; }
+		html,body { height: 100%; }
+		#map { position: absolute; top: 45px; bottom: 0; width:97%; height: calc(96% - 43.375px); }
+		.leaflet-overlay-pane path, .leaflet-marker-icon { cursor: pointer; }
+		#pop { font-family: 'Helvetica Neue', Verdana, Tahoma, 'sans-serif'; color: black !important; }
+		</style>
+</head>
+<body>
+	
+    <div data-role="page" data-theme="c">
+	
+        <div data-role="header">
+		
+		<h1>Twitter Use in Kenya</h1>
+		
+		<a href="#" data-role="button" data-icon="home">Home</a>
+		
+		<a href="map.html" data-role="button" data-icon="location" rel="external" >Map</a>
+		
+        </div>
+		
+		<div data-role="content">
+		<p><h2>Introduction</h2></p>
+		<p>Click on the "Map" icon in the upper-right to access the real-time map of tweets located in (and very near to) Kenya. Only those tweets from individuals who have their geolocation function turned on will display. The markers update every ten minutes. The "Home" icon will always bring you back to this page while the "Refresh" icon on the map page will reload that entire page.
+		</p>
+		<p>On the map itself, you will find at most 20 markers, each of which is associated with a tweet in Kenya (and occasionally other eastern African countries). Clicking on a marker will open a popup that will display that tweeter's handle, followed by the text of the tweet. The map can be zoomed in to see street detail.
+		</p>
+		<p><h2>Background</h2></p>
+		<p>This project began as an idea in December 2013 to create a mobile mapping system that would allow people to track, in real time, the tweets coming out of the Maasai Mara National Reserve in Kenya. After quickly realizing that such a project would not be feasible, given how few tweets come from that part of Kenya, this project's geographic area quickly expanded to include the
+		entirety of Kenya.
+		</p>
+		<p><h2>Tools</h2></p>
+		<p>The largest tool working behind the scenes on this project is <a href="http://mapbox.com" target="_blank">Mapbox</a>'s map tiles. The site itself is build with the <a href="https://jquerymobile.com/" target="_blank">jQuery Mobile</a> framework. The twitter data utilizes Martin Hawksey's <a href="https://tags.hawksey.info" target="_blank">TAGS</a> tool for tweet archiving by pulling from <a href="http://twitter.com" target="_blank">Twitter</a>'s firehose API, but with a number of modifications that turns it into an up-to-the-minute database of the 20 most recent tweets geolocated to Kenya. (TAGS is available via the <a href="http://creativecommons.org/licenses/by-sa/2.5/" target="_blank">Share-Alike Creative Commons license</a>.) By hosting this tool on Google Drive and automatically publishing any changes as a Comma Separated Values (.csv) file, this site combines the .csv with the Mapbox map using Leaflet's <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/markers-from-csv/" target="_blank">Omnivore</a> tool.
+		</div>
+	
+	</div>	
+		
+
+</body>
+</html>
