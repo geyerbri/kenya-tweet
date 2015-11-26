@@ -8,11 +8,11 @@
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' />
     <link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' />
-<!--    <script src="jquery-1.11.0.js"></script>-->
+    <script src="jquery-1.11.0.js"></script>
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
 	<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v1.0.0/leaflet-omnivore.min.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 	<script type="text/javascript">window.googleDocCallback = function () { return true; };</script>
 		<style>
 		body { margin:0; padding:0; }
@@ -29,28 +29,6 @@
 		
 				<div id='map'></div>
 				<script type="text/javascript">
-				var map = L.map('map').setView([0.494, 37.661], 6);
-            L.tileLayer('https://{s}.tiles.mapbox.com/v3/geyerbri-msu.hn5m20b4/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    minZoom: 5
-}).addTo(map);
-            //enter path for .csv here
-            omnivore.csv('https://docs.google.com/spreadsheets/d/1LLEVmnvrgK0aVWSgJv6o2c4ALfsXbrGpSSpAj07RfIk/pub?gid=82&single=true&output=csv&callback=googleDocCallback')
-             .on('ready', function(layer) {
-       
-        this.eachLayer(function(marker) {
-          
-            // Bind a popup to each icon based on the same properties
-            // Adds coloumns of extra info to marker popup
-            marker.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src=" + feature.properties.profile_image_url + " /></div><div float: right><span id='pop'><strong>"+'@'+feature.properties.from_user+"</strong><br>"+feature.properties.text+"</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
-        });
-    })
-            .addTo(map);
-				</script>
-				
-				
-				
-<!--				<script type="text/javascript">
 					var southWest = L.latLng(-11.236632, 28.567951),
 						northEast = L.latLng(18.984171, 50.682093),
 						bounds = L.latLngBounds(southWest, northEast);
@@ -87,7 +65,7 @@
 						}}
 					};
 				</script>
--->
+
 	
 </body>
 </html>
