@@ -60,10 +60,8 @@
 				//this.mapAttribution.addAttribution('<a href="http://mapbox.com">MapBox</a> | <a href="https://jquerymobile.com/">jQuery Mobile</a> | <a href="https://tags.hawksey.info">TAGS</a>');
 				//L.mapbox.tileLayer('https://{s}.tiles.mapbox.com/v4/geyerbri-msu.hn5m20b4/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA').addTo(map);
 //					window.googleDocCallback = function () { return true; };
-					var points = omnivore.csv('archive.csv')
-	//				var points = omnivore.csv(
-	//				'https://docs.google.com/spreadsheets/d/1LLEVmnvrgK0aVWSgJv6o2c4ALfsXbrGpSSpAj07RfIk/pub?gid=82&single=true&output=csv&callback=googleDocCallback')
-					.on('ready', function() {
+					var points = omnivore.csv(
+					'https://docs.google.com/spreadsheets/d/1LLEVmnvrgK0aVWSgJv6o2c4ALfsXbrGpSSpAj07RfIk/pub?gid=82&single=true&output=csv&callback=googleDocCallback').on('ready', function() {
 						this.eachLayer(function(marker) {
 							if (marker.toGeoJSON().properties.lang !== 'null') {
 								marker.setIcon(L.mapbox.marker.icon({
