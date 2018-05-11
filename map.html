@@ -47,7 +47,7 @@
 					northEast = L.latLng(11.984171, 46.682093),
 						bounds = L.latLngBounds(southWest, northEast);
 				L.mapbox.accessToken = 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA';
-				var map = L.mapbox.map('map', 'geyerbri-msu.hn5m20b4', {tileSize: '64px', maxBounds: bounds, minZoom: 5, attribution: '<a href="http://mapbox.com" target="_blank">MapBox</a> | <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://jquerymobile.com/" target="_blank">jQuery Mobile</a> | <a href="https://tags.hawksey.info" target="_blank">TAGS</a>'});
+				var map = L.mapbox.map('map', 'geyerbri-msu.hn5m20b4', {maxBounds: bounds, minZoom: 5, attribution: '<a href="http://mapbox.com" target="_blank">MapBox</a> | <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://jquerymobile.com/" target="_blank">jQuery Mobile</a> | <a href="https://tags.hawksey.info" target="_blank">TAGS</a>'});
 				var points = omnivore.csv(
 					'https://docs.google.com/spreadsheets/d/1op5tv81nhF_Fd2VyOE76O_xgOZBNtFZt9uopP04FeNE/pub?gid=400689247&single=true&output=csv'
 				).on('ready', function() {
