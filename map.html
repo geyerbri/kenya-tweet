@@ -27,19 +27,19 @@
 		</style>
 </head>
 <body>
-	
+
     <div data-role="page" id="test" data-theme="c">
-		
+
 		<div data-role="header">
-		
-		<h1>Tweet Map</h1>		
-		
+
+		<h1>Tweet Map</h1>
+
 		<a href="index.html" data-role="button" data-icon="home" rel="external" >Home</a>
-		
+
 		<a href="map.html" data-role="button" data-icon="refresh" rel="external" >Refresh</a>
-		
+
 		</div>
-		
+
 		<div data-role="content" style="padding-top: 1.5%; padding-left: 1.5%" >
 			<div id='map'>1</div>
 			<script type="text/javascript">
@@ -57,18 +57,23 @@
 								'marker-color': '#D00000',
 						}))};
 					});
-					points.eachLayer(eachLayer);			
+					points.eachLayer(eachLayer);
 				}).addTo(map);
-				
+
 				function eachLayer(layer) {
 					var feature = layer.toGeoJSON();
 					if (feature.properties) {
 						if (feature.properties.from_user) {
-							layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src=" + feature.properties.profile_image_url.replace('_normal','') + " /></div><div float: right><span id='pop'><strong>" + '@' + feature.properties.from_user + "</strong><br>" + feature.properties.text + "</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
+                            if(feature.properties.profile_image_url) {
+                                layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src=" + feature.properties.profile_image_url.replace('_normal','') + " /></div><div float: right><span id='pop'><strong>" + '@' + feature.properties.from_user + "</strong><br>" + feature.properties.text + "</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
+                            }
+                            else {
+							    layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png' /></div><div float: right><span id='pop'><strong>" + '@' + feature.properties.from_user + "</strong><br>" + feature.properties.text + "</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
+                            }
 					}}
 				};
 			</script>
-		</div>	
+		</div>
 	</div>
 </body>
 </html>
