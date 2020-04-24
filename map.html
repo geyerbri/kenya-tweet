@@ -7,24 +7,28 @@
 	<link rel="stylesheet" href="jquery.mobile.icons.min.css" />
 	<link rel="stylesheet" href="New.themes.min.css" />
 	<link rel="stylesheet" href="jquery.mobile.structure-1.4.5.min.css" />
-    <!--<link rel="stylesheet" href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' />-->
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-	<link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' />
-    <link rel="stylesheet" href='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' />
+<!--<link rel="stylesheet" href='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.css' />-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+	<link rel="stylesheet" href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' />
+    <link rel="stylesheet" href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' />
     <script src="jquery-1.11.0.js"></script>
 	<script src="jquery.mobile-1.4.5.min.js"></script>
-	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-	<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-		<style>
+
+	<style>
 		body { margin:0; padding:0; }
 		html,body { height: 100%; }
-		#map { height: 100%}
+		#map { height: 100% }
 		.leaflet-overlay-pane path, .leaflet-marker-icon { cursor: pointer; }
-		#pop { font-family: 'Helvetica Neue', Verdana, Tahoma, 'sans-serif'; color: black !important; }
+		.pop { font-family: 'Helvetica Neue', Verdana, Tahoma, 'sans-serif'; color: black !important; word-wrap: break-word }
+		h4.username { margin-bottom: 0.5em }
+		h4.username a { color: black !important; text-decoration: none }
+		.username a:hover { text-decoration: underline }
 		.ui-content { position: absolute; top: 45px; right: 0; bottom: 0px; left: 0; padding: 0 !important; }
-		</style>
+	</style>
 </head>
 <body>
 
@@ -34,20 +38,33 @@
 
 		<h1>Tweet Map</h1>
 
-		<a href="index.html" data-role="button" data-icon="home" rel="external" >Home</a>
+		<a href="." data-role="button" data-icon="home" >Home</a>
 
 		<a href="map.html" data-role="button" data-icon="refresh" rel="external" >Refresh</a>
 
 		</div>
 
 		<div data-role="content" style="padding-top: 1.5%; padding-left: 1.5%" >
-			<div id='map'>1</div>
+			<div id='map'></div>
 			<script type="text/javascript">
+			$(document).ready(function () {
 				var southWest = L.latLng(-11.236632, 28.567951),
 					northEast = L.latLng(11.984171, 46.682093),
-						bounds = L.latLngBounds(southWest, northEast);
+					bounds = L.latLngBounds(southWest, northEast);
+				var map = L.map('map'
+				, {
+					attributionControl: false,
+					closePopupOnClick: false
+				}
+				).setMaxBounds(bounds).setView([1.9/*2.3737695*/, 37.625022], 6);
+			L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+				minZoom: 6,
+				tileSize: 512,
+				zoomOffset: -1,
+				id: 'geyerbri-msu/ck9dirxky02e91ild7rwxfk4d',
+				accessToken: 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA'
+			}).addTo(map);
 				L.mapbox.accessToken = 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA';
-				var map = L.mapbox.map('map', 'geyerbri-msu.hn5m20b4', {maxBounds: bounds, minZoom: 5, attribution: '<a href="http://mapbox.com" target="_blank">MapBox</a> | <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://jquerymobile.com/" target="_blank">jQuery Mobile</a> | <a href="https://tags.hawksey.info" target="_blank">TAGS</a>'});
 				var points = omnivore.csv(
 					'https://docs.google.com/spreadsheets/d/e/2PACX-1vQeexN7w2rJypIfP9kIEd-_aoQzcpFF4t7RpQctnOhOgw5assfiMpkESPfK0ZjFR-808Cl8bL8lqJvF/pub?gid=400689247&single=true&output=csv'
 				).on('ready', function() {
@@ -64,14 +81,15 @@
 					var feature = layer.toGeoJSON();
 					if (feature.properties) {
 						if (feature.properties.from_user) {
-                            if(feature.properties.profile_image_url) {
-                                layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src=" + feature.properties.profile_image_url.replace('_normal','') + " /></div><div float: right><span id='pop'><strong>" + '@' + feature.properties.from_user + "</strong><br>" + feature.properties.text + "</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
+                            if(feature.properties.profile_image_url_https) {
+                                layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><a href='https://twitter.com/" + feature.properties.from_user + "' target='_blank'><img style='width: 100px;' src=" + feature.properties.profile_image_url_https.replace('_normal','') + " /></a></div><div><span class='pop'><strong><h4 class='username'><a href='https://twitter.com/" + feature.properties.from_user + "' target='_blank'>" + '@' + feature.properties.from_user + "</a></h4></strong>" + feature.properties.text + "</p></span></div><div style='clear: both'><span class='pop'><p style='text-align:center;position:relative;margin:auto'><a href='" + feature.properties.status_url + "' target='_blank'>Go to Tweet</a></p></span></div>", {autopan: true, closeButton: true, autoPanPadding: [5,5]});
                             }
                             else {
-							    layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 100px;' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png' /></div><div float: right><span id='pop'><strong>" + '@' + feature.properties.from_user + "</strong><br>" + feature.properties.text + "</p></span></div><div style='clear: both'></div>", {closeButton: true, autoPanPadding: [5,55]});
+							    layer.bindPopup("<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><a href='https://twitter.com/" + feature.properties.from_user + "' target='_blank'><img style='width: 100px;' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png' /></a></div><div><span class='pop'><strong><h4 class='username'><a href='https://twitter.com/" + feature.properties.from_user + "' target='_blank'>" + '@' + feature.properties.from_user + "</a></h4></strong>" + feature.properties.text + "</p><br></span></div><div style='clear: both'><span class='pop'><p style='text-align:center;position:relative;margin:auto'><a href='" + feature.properties.status_url + "' target='_blank'>Go to Tweet</a></p></span></div>", {closeButton: true, autoPanPadding: [5,5]});
                             }
 					}}
-				};
+				}
+			});
 			</script>
 		</div>
 	</div>
