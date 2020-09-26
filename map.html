@@ -66,7 +66,7 @@
 			}).addTo(map);
 				L.mapbox.accessToken = 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA';
 				var points = omnivore.csv(
-					'https://docs.google.com/spreadsheets/d/e/2PACX-1vQeexN7w2rJypIfP9kIEd-_aoQzcpFF4t7RpQctnOhOgw5assfiMpkESPfK0ZjFR-808Cl8bL8lqJvF/pub?gid=400689247&single=true&output=csv'
+					'https://doc-0k-as-sheets.googleusercontent.com/pub/l5l039s6ni5uumqbsj9o11lmdc/k9v9g5bechf4k032lrq8huvbmc/1601093370000/114874368685048633015/*/e@2PACX-1vQeexN7w2rJypIfP9kIEd-_aoQzcpFF4t7RpQctnOhOgw5assfiMpkESPfK0ZjFR-808Cl8bL8lqJvF?gid=400689247&single=true&output=csv'
 				).on('ready', function() {
 					this.eachLayer(function(marker) {
 						if (marker.toGeoJSON().properties.lang !== 'null') {
