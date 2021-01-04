@@ -1,61 +1,62 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-	<	<title>Template Log</title>
-  <style>
-		.table-strong {
-			font-weight: bold!important;
-		}
-		.implementation th, #front-matter th {
-			border-bottom: 1px hidden!important
-		}
-		table {
-			table-layout: fixed;
-			width: 100%;
-			margin: 40px auto;
-			border: 2px solid black;
-			border-collapse: collapse;
-		}
-		th, td, caption {
-			font-size: 1.1em;
-			text-align: left;
-			vertical-align: top;
-			font-weight: normal;
-		}
-		th, td {
-			border: 1px solid black;
-		}
-		#front-matter {
-
-		}
-		h1.participant {
-			all: inherit;
-			border: none!important;
-		}
-		h2 {
-			font-size: 1.2em;
-		}
-		h2::after {
-			content: ":"
-		}
-		caption h2 {
-			margin-bottom: 0;
-			font-size: 1.1em
-		}
-		.log {
-			width: 80%;
-			margin: auto;
-		}
-		#classes th {
-			font-weight: bold!important;
-			border-bottom: 2px solid black;
-		}
-		div {
-			margin: 40px auto
-		}
-		.implementation {
-			table-layout: fixed
-		}
-	</style>
+<html lang="en">
+	<head>
+		<title>Template Log</title>
+		<style>
+			.table-strong {
+				font-weight: bold!important;
+			}
+			.hidden-bottom, .implementation th, #front-matter th {
+				border-bottom: 1px hidden!important
+			}
+			table {
+				table-layout: fixed;
+				width: 100%;
+				margin: 40px auto;
+				border: 2px solid black;
+				border-collapse: collapse;
+			}
+			th, td, caption {
+				font-size: 1.1em;
+				text-align: left;
+				vertical-align: top;
+				font-weight: normal;
+			}
+			th, td {
+				border: 1px solid black;
+			}
+			#front-matter {
+	
+			}
+			h1.participant {
+				all: inherit;
+				border: none!important;
+			}
+			h2 {
+				font-size: 1.2em;
+			}
+			h2::after {
+				content: ":"
+			}
+			caption h2 {
+				margin-bottom: 0;
+				font-size: 1.1em
+			}
+			.log {
+				width: 80%;
+				margin: auto;
+			}
+			#classes th {
+				font-weight: bold!important;
+				border-bottom: 2px solid black;
+			}
+			div {
+				margin: 40px auto
+			}
+			.implementation {
+				table-layout: fixed
+			}
+		</style>
 	</head>
 
 	<body>
@@ -83,8 +84,8 @@
                 </tr>
            		<tr>
                 	<th>Research Background:</th>
-                    <td></td>
-                    <td></td>
+                    <td class="hidden-bottom"></td>
+                    <td class="hidden-bottom"></td>
                 </tr>
                 <tr>
                 	<td>&nbsp;</td>
